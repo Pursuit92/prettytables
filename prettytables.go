@@ -29,9 +29,15 @@ func PrintTable(obj Tableable) {
 	fieldLengths := make([]int, numFields)
 	for _, v := range tab {
 		for j, w := range v {
-			l := len(w)
-			if l > fieldLengths[j] {
-				fieldLengths[j] = l
+			split := strings.Split(w, "\n")
+			groupMax := 0
+			for _, y := range split {
+				if len(y) > groupMax {
+					groupMax = len(y)
+				}
+			}
+			if groupMax > fieldLengths[j] {
+				fieldLengths[j] = groupMax
 			}
 		}
 	}
